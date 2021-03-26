@@ -17,10 +17,10 @@
 
             <h2>実験手順</h2>
             <ol>
-                <li>クラウドワークスのワーカー名を入力し "Start"を押して下さい。</li>
+                <li>クラウドワークスのワーカー名を入力し "Start"を押して下さい．</li>
 
-                <li>１つの雑談の創作を終えたら"next"ボタンを押し、次の雑談の創作に進んで下さい。</li>
-                <li>３つの雑談の創作を全て終えたら"finish"ボタンを押して結果をダウンロードして下さい。<br> 結果はクラウドワークスで送信してください
+                <li>１つの雑談の創作を終えたら"次の雑談へ"ボタンを押し，次の雑談の創作に進んで下さい．</li>
+                <li>３つの雑談の創作を全て終えたら"終わり"ボタンを押して結果をダウンロードして下さい．<br> 結果はクラウドワークスで送信してください
                 </li>
                 </li>
             </ol>
@@ -28,8 +28,8 @@
             <h2>注意</h2>
             <ul>
                 <li>この雑談創作には凡そ60分ほど要します</li>
-                <li>創作中はページの再読み込みは行わないで下さい。</li>
-                <li>スマートフォンでは結果をダウンロードできない場合があるためPCを使用して下さい。</li>
+                <li>創作中はページの再読み込みや戻るボタンは行わないで下さい．</li>
+                <li>スマートフォンでは結果をダウンロードできない場合があるためPCを使用して下さい．</li>
             </ul>
         </p>
 
@@ -49,99 +49,263 @@
             <p id="category"></p>
             <p id="question"></p>
 
-            <form id="sampleForm">
-                【入力欄】
-                <br /> 名前：
-                <input type="text" name="formName" value="太郎">
-                <br /> 地域：
-                <select name="formArea">
-                    <option selected>関東</option>
-                    <option>東海</option>
-                    <option>関西</option>
+            <form id="Form">
+                【入力欄】 1発話目
+                <br /> 話者：
+                <select name="formspeaker1">
+                    <option>質問役</option>
+                    <option>回答役</option>
                 </select>
-                <br /> 年齢：
-                <select name="formAge">
-                    <option selected>10代</option>
-                    <option>20代</option>
-                    <option>30代</option>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 2発話目
+                <br /> 話者：
+                <select name="formspeaker2">
+                    <option>質問役</option>
+                    <option>回答役</option>
                 </select>
-                <br /> コメント：
-                <textarea name="formComent">コメント</textarea>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 3発話目
+                <br /> 話者：
+                <select name="formspeaker3">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 4発話目
+                <br /> 話者：
+                <select name="formspeaker4">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 5発話目
+                <br /> 話者：
+                <select name="formspeaker5">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 6発話目
+                <br /> 話者：
+                <select name="formspeaker6">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 7発話目
+                <br /> 話者：
+                <select name="formspeaker7">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 8発話目
+                <br /> 話者：
+                <select name="formspeaker8">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage9"></textarea>
+                <br /> 9発話目
+                <br /> 話者：
+                <select name="formspeaker10">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 10発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 11発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 12発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 13発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 14発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 15発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 16発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 17発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 18発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 19発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 20発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 21発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 22発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 23発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 24発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 25発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 26発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 27発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 28発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 29発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
+                <br /> 30発話目
+                <br /> 話者：
+                <select name="formspeaker">
+                    <option>質問役</option>
+                    <option>回答役</option>
+                </select>
+                <br /> メッセージ：
+                <textarea name="formmessage"></textarea>
                 <br />
             </form>
-            <div id="sampleOutput">
-                【出力欄】
-                <br /> 名前：
-                <span id="sampleOutputName"></span>
-                <br /> 地域：
-                <span id="sampleOutputArea"></span>
-                <br /> 年齢：
-                <span id="sampleOutputAge"></span>
-                <br /> コメント：
-                <span id="sampleOutputComent"></span>
+            <button id="plus" onclick="addmessage()">メッセージを追加</button>
+            <div id="Output">
+                【雑談】
+                <br />
+                <span id="outspeaker"></span>
+                <span id="outmessage"></span>
                 <br />
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <td></td>
-                        <th scope="col">内容</th>
-                        <th scope="col">価格(月額)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>ベーシックプラン</th>
-                        <td data-label="内容" class="txt">はじめての方向け。ベーシックなお試しプラン</td>
-                        <td data-label="価格" class="price">¥3,000</td>
-                    </tr>
-                    <tr>
-                        <th>カスタムプラン</th>
-                        <td data-label="内容" class="txt">必要なものだけ揃えられるカスタムプラン</td>
-                        <td data-label="価格" class="price">¥4,000</td>
-                    </tr>
-                    <tr>
-                        <th>プレミアムプラン</th>
-                        <td data-label="内容" class="txt">全ておまかせのプレミアムプラン</td>
-                        <td data-label="価格" class="price">¥10,000</td>
-                    </tr>
-                    <tr>
-                        <th>ベーシックプラン</th>
-                        <td data-label="内容" class="txt">はじめての方向け。ベーシックなお試しプラン</td>
-                        <td data-label="価格" class="price">¥3,000</td>
-                    </tr>
-                    <tr>
-                        <th>カスタムプラン</th>
-                        <td data-label="内容" class="txt">必要なものだけ揃えられるカスタムプラン</td>
-                        <td data-label="価格" class="price">¥4,000</td>
-                    </tr>
-                    <tr>
-                        <th>プレミアムプラン</th>
-                        <td data-label="内容" class="txt">全ておまかせのプレミアムプラン</td>
-                        <td data-label="価格" class="price">¥10,000</td>
-                    </tr>
-                    <tr>
-                        <th>ベーシックプラン</th>
-                        <td data-label="内容" class="txt">はじめての方向け。ベーシックなお試しプラン</td>
-                        <td data-label="価格" class="price">¥3,000</td>
-                    </tr>
-                    <tr>
-                        <th>カスタムプラン</th>
-                        <td data-label="内容" class="txt">必要なものだけ揃えられるカスタムプラン</td>
-                        <td data-label="価格" class="price">¥4,000</td>
-                    </tr>
-                    <tr>
-                        <th>プレミアムプラン</th>
-                        <td data-label="内容" class="txt">全ておまかせのプレミアムプラン</td>
-                        <td data-label="価格" class="price">¥10,000</td>
-                    </tr>
-                </tbody>
-            </table>
+
 
             <p>
-                <button id="prev" onclick="prev()">prev</button>
-                <button id="next2" onclick="next()">next</button>
-                <button id="finish" onclick="finish()">finish</button>
+                <button id="prev" onclick="prev()">前の雑談へ</button>
+                <button id="next2" onclick="next()">次の雑談へ</button>
+                <button id="finish" onclick="finish()">終わり</button>
             </p>
 
 
