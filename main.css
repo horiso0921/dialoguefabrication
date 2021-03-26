@@ -1,0 +1,53 @@
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    padding: 0;
+    width: 650px;
+    box-shadow: 0 0 15px -6px #00000073;
+}
+
+table tr {
+    background-color: #fff;
+}
+
+table tbody tr:hover {
+    background-color: #ffe386;
+}
+
+table th,
+table td {
+    padding: .35em 1em;
+    border-bottom: 1px solid #eee;
+}
+
+table thead th {
+    font-size: .85em;
+    padding: 1em;
+}
+
+table thead tr {
+    background-color: #FFC107;
+    color: #fff;
+}
+
+table tbody th {
+    text-align: left;
+    font-size: .8em;
+}
+
+.txt {
+    text-align: left;
+    font-size: .75em;
+}
+
+.price {
+    text-align: right;
+    color: #000;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+    table {
+        width: 100%;
+    }
+}

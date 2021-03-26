@@ -1,4 +1,4 @@
-Array.prototype.shuffle = function () {
+Array.prototype.shuffle = function() {
     var i = this.length;
     while (i) {
         var j = Math.floor(Math.random() * i);
@@ -21,21 +21,7 @@ function start_experiment() {
     // get user name
     var name = document.getElementById("name").value.replace(" ", "_");
     if (name == "") {
-        alert("Please enter your name.");
-        return false;
-    }
-
-    // get setlist number
-    var set_num = "0"
-    var number = document.getElementsByName("set");
-    for (var i = 0; i < number.length; i++) {
-        if (number[i].checked) {
-            set_num = number[i].value;
-        }
-    }
-
-    if (set_num == "0") {
-        alert("Please press the setlist number button.");
+        alert("名前を入力してください");
         return false;
     }
 
@@ -43,20 +29,16 @@ function start_experiment() {
     Display()
 
     // read filepath
-    var method0_list = wav_dir + "set" + set_num + "/method0.list";
-    var method1_list = wav_dir + "set" + set_num + "/method1.list";
-    var method2_list = wav_dir + "set" + set_num + "/method2.list";
-    var method3_list = wav_dir + "set" + set_num + "/method3.list";
-    method0 = loadText(method0_list);
-    method1 = loadText(method1_list);
-    method2 = loadText(method2_list);
-    method3 = loadText(method3_list);
-    outfile = name + "_set" + set_num + ".csv";
+    var question_list = text_dir + "question.list";
+    var category_list = text_dir + "category.list";
+    question = loadText(question_list);
+    category = loadText(category_list);
+    console.log(question.length)
+    outfile = name + ".csv";
     file_list = makeFileList()
-    scores = (new Array(file_list.length)).fill(0);
+    contents = (new Array(file_list.length)).fill("");
     eval = document.getElementsByName("eval");
     init()
-
 }
 
 // convert display
@@ -78,60 +60,46 @@ function loadText(filename) {
 
 // make file list
 function makeFileList() {
-    var files = Array((method1.length) * 6);
-    for (var i = 0; i < (method1.length); i++) {
-        pairs = [[method0[i], method1[i], method2[i]], [method0[i], method2[i], method1[i]],
-        [method0[i], method2[i], method3[i]], [method0[i], method3[i], method2[i]],
-        [method0[i], method1[i], method3[i]], [method0[i], method3[i], method1[i]]]
-        for (var j = 0; j < 6; j++) {
-            files[i * 6 + j] = pairs[j];
-        }
+    var files = Array(question.length);
+    category.shuffle();
+    question.shuffle();
+    for (let i = 0; i < files.length; i++) {
+        files[i] = [category[i], question[i]];
     }
-    files.shuffle();
 
     return files;
 }
 
-function setAudio() {
-    document.getElementById("page").textContent = "" + (n + 1) + "/" + scores.length;
+function setRequirements() {
 
-    document.getElementById("audio_x").innerHTML = 'VoiceX:<br>'
-        + '<audio src="' + file_list[n][0]
-        + '" controls preload="auto">'
-        + '</audio>';
+    document.getElementById("page").textContent = "" + (n + 1) + "/" + 3;
 
-    document.getElementById("audio_a").innerHTML = 'VoiceA:<br>'
-        + '<audio src="' + file_list[n][1]
-        + '" controls preload="auto">'
-        + '</audio>';
+    document.getElementById("category").innerHTML = file_list[n][0];
 
-    document.getElementById("audio_b").innerHTML = 'VoiceB:<br>'
-        + '<audio src="' + file_list[n][2]
-        + '" controls preload="auto">'
-        + '</audio>';
+    document.getElementById("question").innerHTML = file_list[n][1];
+
 }
 
 function init() {
     n = 0;
-    setAudio();
-    evalCheck();
+    setRequirements();
+    // evalCheck();
     setButton();
 }
 
-function evalCheck() {
-    const c = scores[n];
-    if ((c <= 0) || (c > eval.length)) {
-        for (var i = 0; i < eval.length; i++) {
-            eval[i].checked = false;
-        }
-    }
-    else {
-        eval[c - 1].checked = true;
-    }
-}
+// function evalCheck() {
+//     const c = scores[n];
+//     if ((c <= 0) || (c > eval.length)) {
+//         for (var i = 0; i < eval.length; i++) {
+//             eval[i].checked = false;
+//         }
+//     } else {
+//         eval[c - 1].checked = true;
+//     }
+// }
 
 function setButton() {
-    if (n == (scores.length - 1)) {
+    if (n == (file_list.length - 1)) {
         document.getElementById("prev").disabled = false;
         document.getElementById("next2").disabled = true;
         document.getElementById("finish").disabled = true;
@@ -141,22 +109,20 @@ function setButton() {
                 break;
             }
         }
-    }
-    else {
+    } else {
         if (n == 0) {
             document.getElementById("prev").disabled = true;
-        }
-        else {
+        } else {
             document.getElementById("prev").disabled = false;
         }
         document.getElementById("next2").disabled = true;
-        document.getElementById("finish").disabled = true;
-        for (var i = 0; i < eval.length; i++) {
-            if (eval[i].checked) {
-                document.getElementById("next2").disabled = false;
-                break;
-            }
-        }
+        document.getElementById("finish").disabled = false;
+        // for (var i = 0; i < eval.length; i++) {
+        //     if (eval[i].checked) {
+        //         document.getElementById("next2").disabled = false;
+        //         break;
+        //     }
+        // }
     }
 }
 
@@ -172,9 +138,12 @@ function evaluation() {
 function exportCSV() {
     var csvData = "";
     for (var i = 0; i < file_list.length; i++) {
-        csvData += "" + file_list[i][1] + ","
-            + file_list[i][2] + ","
-            + scores[i] + "\r\n";
+        csvData += "" + file_list[i][1] + "," +
+            file_list[i][2] + ",";
+        for (let j = 0; j < contents[i].length; j++) {
+            csvData += contents[i][j] + ",";
+        }
+        csvData += "\r\n";
     }
 
     const link = document.createElement("a");
@@ -191,15 +160,15 @@ function exportCSV() {
 
 function next() {
     n++;
-    setAudio();
-    evalCheck();
+    setRequirements();
+    // evalCheck();
     setButton();
 }
 
 function prev() {
     n--;
-    setAudio();
-    evalCheck();
+    setRequirements();
+    // evalCheck();
     setButton();
 }
 
@@ -207,23 +176,43 @@ function finish() {
     exportCSV();
 }
 
-
 // --------- 設定 --------- //
 
 // directory name
-const wav_dir = "wav/";
+const text_dir = "text/";
 
 // invalid enter key
-document.onkeypress = invalid_enter();
+document.onkeypress = document.addEventListener('keydown', invalid_enter)
 
-var method0;
-var method1;
-var method2;
-var method3;
+var question;
+var category;
 var outfile;
 var file_list;
-var scores;
+var contents;
+var maxturn = 30;
+var minturn = 20;
 
 // ローカルで行う場合はloadText()は動作しないため
 var n = 0;
 var eval = document.getElementsByName("eval");
+
+function getValue() {
+    var formObject = document.getElementById("sampleForm");
+    document.getElementById("sampleOutputName").innerHTML = formObject.formName.value;
+    document.getElementById("sampleOutputArea").innerHTML = formObject.formArea.value;
+    document.getElementById("sampleOutputAge").innerHTML = formObject.formAge.value;
+    document.getElementById("sampleOutputComent").innerHTML = formObject.formComent.value;
+}
+
+window.onload = function() {
+    getValue();
+    var formObject = document.getElementById("sampleForm");
+    for (var i = 0; i < formObject.length; i++) {
+        formObject.elements[i].onkeyup = function() {
+            getValue();
+        };
+        formObject.elements[i].onchange = function() {
+            getValue();
+        };
+    }
+}

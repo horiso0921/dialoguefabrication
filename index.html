@@ -4,80 +4,150 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>作話データ収集用ページ</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/marx/2.0.4/marx.css">
-
+    <title>雑談データ創作用ページ</title>
+    <link rel="stylesheet" href="https://unpkg.com/marx-css/css/marx.min.css">
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="abx.js"></script>
 </head>
 
 <body>
-
-    <!-- 注意書きなど -->
-    <p>
-
-    <h2>実験手順</h2>
-    <ol>
-        <li>名前を入力し1から8までのセット番号を選んで下さい。</li>
-        <li>"Start Experiment"を押して下さい。</li>
-        <li>初めに一番上にある音声を聴いて下さい。これを音声Xとします。<br>
-            次に下２つの音声を聴き、音声Xに近いと思った方を選んで下さい。<br>
-            その際、<b>ピッチ</b>(声の高さ)がどれだけ一致しているかに意識して下さい。</li>
-        <li>選択を終えたら"next"ボタンを押し、次の実験に進んで下さい。</li>
-        <li>評価実験を全て終えたら"finish"ボタンを押して結果をダウンロードして下さい。<br>
-            結果はSlackか下記のメールアドレスに送信して下さい。</li>
-        <li>Emailアドレス: yoneyama.reo@g.sp.m.is.nagoya-u.ac.jp</font>
-        </li>
-    </ol>
-
-    <h2>注意</h2>
-    <ul>
-        <li>この実験は凡そ20分ほど要します</li>
-        <li>実験中はページの再読み込みは行わないで下さい。</li>
-        <li>スマートフォンでは結果をダウンロードできない場合があるためPCを使用して下さい。</li>
-        <li>ヘッドホンやイヤホンを着用した状態で行って下さい。</li>
-    </ul>
-    </p>
-    </div>
-
-    <script type="text/javascript" src="abx.js"></script>
-
-    <div id="Display1">
-        <p> Your name: <br>
-            <input type="text" id="name" value="">
-        </p>
-        <p> Setlist number: <br>
-            <label><input type="radio" name="set" id="number" value="1">1</label><br>
-            <label><input type="radio" name="set" id="number" value="2">2</label><br>
-            <label><input type="radio" name="set" id="number" value="3">3</label><br>
-            <label><input type="radio" name="set" id="number" value="4">4</label><br>
-            <label><input type="radio" name="set" id="number" value="5">5</label><br>
-            <label><input type="radio" name="set" id="number" value="6">6</label><br>
-            <label><input type="radio" name="set" id="number" value="7">7</label><br>
-            <label><input type="radio" name="set" id="number" value="8">8</label><br>
-
+    <main>
+        <!-- 注意書きなど -->
         <p>
-            <button id="next1" onclick="start_experiment()">next</button>
-        </p>
-    </div>
 
+            <h2>実験手順</h2>
+            <ol>
+                <li>クラウドワークスのワーカー名を入力し "Start"を押して下さい。</li>
 
-    <div id="Display2" style="display:none;">
-        <!-- 注意書きなど <body onload="init()"> -->
-        <p id="page"></p>
-        <p id="audio_x"></p>
-        <p id="audio_a"></p>
-        <p id="audio_b"></p>
-        <p>
-            <label><input type="radio" name="eval" onclick="evaluation()">A is closer to X</label><br>
-            <label><input type="radio" name="eval" onclick="evaluation()">B is closer to X</label><br>
-        </p>
+                <li>１つの雑談の創作を終えたら"next"ボタンを押し、次の雑談の創作に進んで下さい。</li>
+                <li>３つの雑談の創作を全て終えたら"finish"ボタンを押して結果をダウンロードして下さい。<br> 結果はクラウドワークスで送信してください
+                </li>
+                </li>
+            </ol>
 
-        <p>
-            <button id="prev" onclick="prev()">prev</button>
-            <button id="next2" onclick="next()">next</button>
-            <button id="finish" onclick="finish()">finish</button>
+            <h2>注意</h2>
+            <ul>
+                <li>この雑談創作には凡そ60分ほど要します</li>
+                <li>創作中はページの再読み込みは行わないで下さい。</li>
+                <li>スマートフォンでは結果をダウンロードできない場合があるためPCを使用して下さい。</li>
+            </ul>
         </p>
 
+        <div id="Display1">
+            <p>ワーカー名<br>
+                <input type="text" id="name" value="">
+            </p>
+            <p>
+                <button id="start" onclick="start_experiment()">start</button>
+            </p>
+        </div>
 
+
+        <div id="Display2" style="display:none;">
+            <!-- 注意書きなど <body onload="init()"> -->
+            <p id="page"></p>
+            <p id="category"></p>
+            <p id="question"></p>
+
+            <form id="sampleForm">
+                【入力欄】
+                <br /> 名前：
+                <input type="text" name="formName" value="太郎">
+                <br /> 地域：
+                <select name="formArea">
+                    <option selected>関東</option>
+                    <option>東海</option>
+                    <option>関西</option>
+                </select>
+                <br /> 年齢：
+                <select name="formAge">
+                    <option selected>10代</option>
+                    <option>20代</option>
+                    <option>30代</option>
+                </select>
+                <br /> コメント：
+                <textarea name="formComent">コメント</textarea>
+                <br />
+            </form>
+            <div id="sampleOutput">
+                【出力欄】
+                <br /> 名前：
+                <span id="sampleOutputName"></span>
+                <br /> 地域：
+                <span id="sampleOutputArea"></span>
+                <br /> 年齢：
+                <span id="sampleOutputAge"></span>
+                <br /> コメント：
+                <span id="sampleOutputComent"></span>
+                <br />
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td></td>
+                        <th scope="col">内容</th>
+                        <th scope="col">価格(月額)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>ベーシックプラン</th>
+                        <td data-label="内容" class="txt">はじめての方向け。ベーシックなお試しプラン</td>
+                        <td data-label="価格" class="price">¥3,000</td>
+                    </tr>
+                    <tr>
+                        <th>カスタムプラン</th>
+                        <td data-label="内容" class="txt">必要なものだけ揃えられるカスタムプラン</td>
+                        <td data-label="価格" class="price">¥4,000</td>
+                    </tr>
+                    <tr>
+                        <th>プレミアムプラン</th>
+                        <td data-label="内容" class="txt">全ておまかせのプレミアムプラン</td>
+                        <td data-label="価格" class="price">¥10,000</td>
+                    </tr>
+                    <tr>
+                        <th>ベーシックプラン</th>
+                        <td data-label="内容" class="txt">はじめての方向け。ベーシックなお試しプラン</td>
+                        <td data-label="価格" class="price">¥3,000</td>
+                    </tr>
+                    <tr>
+                        <th>カスタムプラン</th>
+                        <td data-label="内容" class="txt">必要なものだけ揃えられるカスタムプラン</td>
+                        <td data-label="価格" class="price">¥4,000</td>
+                    </tr>
+                    <tr>
+                        <th>プレミアムプラン</th>
+                        <td data-label="内容" class="txt">全ておまかせのプレミアムプラン</td>
+                        <td data-label="価格" class="price">¥10,000</td>
+                    </tr>
+                    <tr>
+                        <th>ベーシックプラン</th>
+                        <td data-label="内容" class="txt">はじめての方向け。ベーシックなお試しプラン</td>
+                        <td data-label="価格" class="price">¥3,000</td>
+                    </tr>
+                    <tr>
+                        <th>カスタムプラン</th>
+                        <td data-label="内容" class="txt">必要なものだけ揃えられるカスタムプラン</td>
+                        <td data-label="価格" class="price">¥4,000</td>
+                    </tr>
+                    <tr>
+                        <th>プレミアムプラン</th>
+                        <td data-label="内容" class="txt">全ておまかせのプレミアムプラン</td>
+                        <td data-label="価格" class="price">¥10,000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                <button id="prev" onclick="prev()">prev</button>
+                <button id="next2" onclick="next()">next</button>
+                <button id="finish" onclick="finish()">finish</button>
+            </p>
+
+
+        </div>
+
+    </main>
 </body>
 
 </html>
