@@ -85,8 +85,8 @@ function setRequirements() {
 
 }
 
-function addmessage(this) {
-    chkAddLimit(this).done(function(data) {
+function addmessage($this) {
+    chkAddLimit($this).done(function(data) {
         var cnt = parseInt($('input[name="add_guest_cnt"]').val());
         if (data.res == '1') {
             var index = chkExis(data.cnt);
@@ -100,134 +100,135 @@ function addmessage(this) {
     }).fail(function(data) {
         $(modal_people_restriction).addClass('modal-window-active');
     });
+}
 
-    function init() {
-        n = 0;
-        setRequirements();
-        contentCheck();
-        setButton();
+function init() {
+    n = 0;
+    setRequirements();
+    contentCheck();
+    setButton();
+}
+
+function contentCheck() {
+    const c = contents[n];
+    for (var i = 0; i < eval.length; i++) {
+        eval[i].checked = false;
     }
+}
 
-    function contentCheck() {
-        const c = contents[n];
-        for (var i = 0; i < eval.length; i++) {
-            eval[i].checked = false;
-        }
-    }
-
-    function setButton() {
-        if (n == (file_list.length - 1)) {
-            document.getElementById("prev").disabled = false;
-            document.getElementById("next2").disabled = true;
-            document.getElementById("finish").disabled = true;
-            for (var i = 0; i < eval.length; i++) {
-                if (eval[i].checked) {
-                    document.getElementById("finish").disabled = false;
-                    break;
-                }
-            }
-        } else {
-            if (n == 0) {
-                document.getElementById("prev").disabled = true;
-            } else {
-                document.getElementById("prev").disabled = false;
-            }
-            document.getElementById("next2").disabled = true;
-            document.getElementById("finish").disabled = true;
-            // for (var i = 0; i < eval.length; i++) {
-            //     if (eval[i].checked) {
-            //         document.getElementById("next2").disabled = false;
-            //         break;
-            //     }
-            // }
-        }
-    }
-
-    function evaluation() {
+function setButton() {
+    if (n == (file_list.length - 1)) {
+        document.getElementById("prev").disabled = false;
+        document.getElementById("next2").disabled = true;
+        document.getElementById("finish").disabled = true;
         for (var i = 0; i < eval.length; i++) {
             if (eval[i].checked) {
-                scores[n] = i + 1;
+                document.getElementById("finish").disabled = false;
+                break;
             }
         }
-        setButton();
-    }
-
-    function exportCSV() {
-        var csvData = "";
-        for (var i = 0; i < file_list.length; i++) {
-            csvData += "" + file_list[i][1] + "," +
-                file_list[i][2] + ",";
-            for (let j = 0; j < contents[i].length; j++) {
-                csvData += contents[i][j] + ",";
-            }
-            csvData += "\r\n";
+    } else {
+        if (n == 0) {
+            document.getElementById("prev").disabled = true;
+        } else {
+            document.getElementById("prev").disabled = false;
         }
-
-        const link = document.createElement("a");
-        document.body.appendChild(link);
-        link.style = "display:none";
-        const blob = new Blob([csvData], { type: "octet/stream" });
-        const url = window.URL.createObjectURL(blob);
-        link.href = url;
-        link.download = outfile;
-        link.click();
-        window.URL.revokeObjectURL(url);
-        link.parentNode.removeChild(link);
+        document.getElementById("next2").disabled = true;
+        document.getElementById("finish").disabled = true;
+        // for (var i = 0; i < eval.length; i++) {
+        //     if (eval[i].checked) {
+        //         document.getElementById("next2").disabled = false;
+        //         break;
+        //     }
+        // }
     }
+}
 
-    function next() {
-        n++;
-        setRequirements();
-        contentCheck();
-        setButton();
-    }
-
-    function prev() {
-        n--;
-        setRequirements();
-        contentCheck();
-        setButton();
-    }
-
-    function finish() {
-        exportCSV();
-    }
-
-    // --------- 設定 --------- //
-
-    // directory name
-    const text_dir = "text/";
-
-    // invalid enter key
-    document.onkeypress = document.addEventListener('keydown', invalid_enter)
-
-    var question;
-    var category;
-    var outfile;
-    var file_list;
-    var contents;
-    var maxturn = 30;
-    var minturn = 20;
-
-    // ローカルで行う場合はloadText()は動作しないため
-    var n = 0;
-    var eval = document.getElementsByName("eval");
-
-    function getValue() {
-        var formObject = document.getElementById("Form");
-        document.getElementById("outspeaker").innerHTML = formObject.formspeaker.value;
-        document.getElementById("outmessage").innerHTML = " : " + formObject.formmessage.value;
-    }
-
-    window.onload = function() {
-        getValue();
-        var formObject = document.getElementById("Form");
-        for (var i = 0; i < formObject.length; i++) {
-            formObject.elements[i].onkeyup = function() {
-                getValue();
-            };
-            formObject.elements[i].onchange = function() {
-                getValue();
-            };
+function evaluation() {
+    for (var i = 0; i < eval.length; i++) {
+        if (eval[i].checked) {
+            scores[n] = i + 1;
         }
     }
+    setButton();
+}
+
+function exportCSV() {
+    var csvData = "";
+    for (var i = 0; i < file_list.length; i++) {
+        csvData += "" + file_list[i][1] + "," +
+            file_list[i][2] + ",";
+        for (let j = 0; j < contents[i].length; j++) {
+            csvData += contents[i][j] + ",";
+        }
+        csvData += "\r\n";
+    }
+
+    const link = document.createElement("a");
+    document.body.appendChild(link);
+    link.style = "display:none";
+    const blob = new Blob([csvData], { type: "octet/stream" });
+    const url = window.URL.createObjectURL(blob);
+    link.href = url;
+    link.download = outfile;
+    link.click();
+    window.URL.revokeObjectURL(url);
+    link.parentNode.removeChild(link);
+}
+
+function next() {
+    n++;
+    setRequirements();
+    contentCheck();
+    setButton();
+}
+
+function prev() {
+    n--;
+    setRequirements();
+    contentCheck();
+    setButton();
+}
+
+function finish() {
+    exportCSV();
+}
+
+// --------- 設定 --------- //
+
+// directory name
+const text_dir = "text/";
+
+// invalid enter key
+document.onkeypress = document.addEventListener('keydown', invalid_enter)
+
+var question;
+var category;
+var outfile;
+var file_list;
+var contents;
+var maxturn = 30;
+var minturn = 20;
+
+// ローカルで行う場合はloadText()は動作しないため
+var n = 0;
+var eval = document.getElementsByName("eval");
+
+function getValue() {
+    var formObject = document.getElementById("Form");
+    document.getElementById("outspeaker").innerHTML = formObject.formspeaker.value;
+    document.getElementById("outmessage").innerHTML = " : " + formObject.formmessage.value;
+}
+
+window.onload = function() {
+    getValue();
+    var formObject = document.getElementById("Form");
+    for (var i = 0; i < formObject.length; i++) {
+        formObject.elements[i].onkeyup = function() {
+            getValue();
+        };
+        formObject.elements[i].onchange = function() {
+            getValue();
+        };
+    }
+}
